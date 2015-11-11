@@ -19,6 +19,8 @@ public class Runner{
 		int[] processTimes = new int[numOfProcesses];
 		int[] waitTime = new int[processTimes.length];
 		
+		// final int TIME_QUANTUM = 4;
+		
 		
 		// User prompted to enter the burst size of each process, which is then stored in the array processTimes[]
 		for(int i = 0; i < numOfProcesses; i++){
@@ -26,10 +28,14 @@ public class Runner{
 			processTimes[i] = input.nextInt();
 		}
 		
-		// Choose the Process Scheduling Algorithm
-		System.out.println("Please enter a Process Scheduling Algorithm:\n1 for FCFS\n2 for SJF\n3 for Round Robin");
 		
+		
+	
+		
+		// Choose the Process Scheduling Algorithm
+		System.out.println("Please enter a Process Scheduling Algorithm:\n1 for FCFS\n2 for SJF\n3 for Round Robin\n4 to Exit the Program");
 		int choice = input.nextInt();
+		
 		switch(choice){
 			case 1:
 				firstComeFirstServed(waitTime, processTimes, sum, sumWaitTimes, averageWaitTime);
@@ -40,6 +46,9 @@ public class Runner{
 			case 3:
 				System.out.println("Round Robin");
 				break;
+			case 4:
+				System.out.println("Program Finished...");
+				System.exit(0);
 			default:
 				System.out.println("Please Enter a valid selection");
 				break;
