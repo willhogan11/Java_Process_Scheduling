@@ -19,8 +19,6 @@ public class Runner{
 		int[] processTimes = new int[numOfProcesses];
 		int[] waitTime = new int[processTimes.length];
 		
-		// final int TIME_QUANTUM = 4;
-		
 		
 		// User prompted to enter the burst size of each process, which is then stored in the array processTimes[]
 		for(int i = 0; i < numOfProcesses; i++){
@@ -29,22 +27,19 @@ public class Runner{
 		}
 		
 		
-		
-	
-		
-		// Choose the Process Scheduling Algorithm
+		// Choose the Process Algorithm
 		System.out.println("Please enter a Process Scheduling Algorithm:\n1 for FCFS\n2 for SJF\n3 for Round Robin\n4 to Exit the Program");
 		int choice = input.nextInt();
 		
 		switch(choice){
 			case 1:
-				firstComeFirstServed(waitTime, processTimes, sum, sumWaitTimes, averageWaitTime);
+				firstComeFirstServed(waitTime, processTimes, sum, sumWaitTimes, averageWaitTime, numOfProcesses);
 				break;
 			case 2:
-				shortestJobFirst(waitTime, processTimes, sum, sumWaitTimes, averageWaitTime);
+				shortestJobFirst(waitTime, processTimes, sum, sumWaitTimes, averageWaitTime, numOfProcesses);
 				break;
 			case 3:
-				System.out.println("Round Robin");
+				System.out.println("Please Refer to RoundRobinProcesses in next class");
 				break;
 			case 4:
 				System.out.println("Program Finished...");
@@ -58,7 +53,9 @@ public class Runner{
 	}
 	
 	
-	public static void firstComeFirstServed(int waitTime[], int processTimes[], int sum, double sumWaitTimes, double averageWaitTime){
+	public static void firstComeFirstServed(int waitTime[], int processTimes[], int sum, double sumWaitTimes, double averageWaitTime, int numOfProcesses){
+		int countProcesses = 0;
+		
 		// Display list of each process and associated burst times
 		System.out.println("Process Array:");
 		for(int x: processTimes)
@@ -72,20 +69,30 @@ public class Runner{
 		}
 
 		// Displays values for each processes waitTimes
-		System.out.println("\nWait time array:");
+		System.out.println("\n\nWait time array:");
 		for(int i: waitTime){
 			System.out.print("|" + i);
 		}
 		
+		System.out.println("\n\nWait time for each process breakdown:");
+		for(int i = 0; i < numOfProcesses; i++){
+			countProcesses += 1;
+			System.out.print("Process " + countProcesses + " waited " + waitTime[i] + "\n");
+		}
+
+		
 		// Calculates the Average wait time for total processes
 		averageWaitTime = sumWaitTimes / waitTime.length;
-		System.out.println("\n\nTotal average Wait ime value is: " + averageWaitTime);
+		System.out.println("\n\nTotal average Wait time value is: " + averageWaitTime);
 		
 	} // End firstComeFirstServed
 	
 	
 	
-	public static void shortestJobFirst(int waitTime[], int processTimes[], int sum, double sumWaitTimes, double averageWaitTime){
+	
+	public static void shortestJobFirst(int waitTime[], int processTimes[], int sum, double sumWaitTimes, double averageWaitTime, int numOfProcesses){
+		int countProcesses = 0;
+		
 		// Display list of each process and associated burst times
 		System.out.println("Process Array:");
 		Arrays.sort(processTimes); // Sorts the array for Shortest Job First
@@ -100,14 +107,20 @@ public class Runner{
 		}
 
 		// Displays values for each processes waitTimes
-		System.out.println("\nWait time array:");
+		System.out.println("\n\nWait time array:");
 		for(int i: waitTime){
 			System.out.print("|" + i);
 		}
 		
+		System.out.println("\n\nWait time for each process breakdown:");
+		for(int i = 0; i < numOfProcesses; i++){
+			countProcesses += 1;
+			System.out.print("Process " + countProcesses + " waited " + waitTime[i] + "\n");
+		}
+		
 		// Calculates the Average wait time for total processes
 		averageWaitTime = sumWaitTimes / waitTime.length;
-		System.out.println("\n\nTotal average Wait ime value is: " + averageWaitTime);
+		System.out.println("\n\nTotal average Wait time value is: " + averageWaitTime);
 		
 	} // End shortestJobFirst
 	
